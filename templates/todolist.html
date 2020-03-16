@@ -1,0 +1,29 @@
+<html>
+    <body bgcolor="#FFFF99"></body>
+    <body style="text-align:center"></body>
+    
+<HEAD>
+    <TITLE>My To Do App</TITLE>
+    <STYLE type="text/css">
+     H1 { text-align: center}
+    </STYLE>
+    <H1 style="color: rgb(60, 19, 112);"><b> My To Do App </b></H1>
+
+    <form action = "/addTodoItem/" method = "post">{% csrf_token %}
+        <input type = "text" name="content" align="right">
+        <input type = "submit" name="Add Todo Item" align="right">
+    </form>
+
+    <ul>
+        {% for i in all_items %}
+        <li>{{ i.content }}
+            <form action="/deleteTodoItem/{{i.id}}/" method = "post">{% csrf_token %}
+                <input type="submit" value="Delete">
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+
+
+</html>
+
